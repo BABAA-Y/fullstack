@@ -1,7 +1,3 @@
-Absolutely. Since this README is for your **Express learning project**, let's make it a proper learning README containing the concepts you've covered so far, examples, API routes, and your notes.
-
-Copy this entire thing into `README.md`:
-
 ````md
 # Express Student API
 
