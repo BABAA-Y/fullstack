@@ -2,6 +2,8 @@ const express = require("express"); // load express packges
 
 const app = express(); // create express application
 
+app.use(express.json()); // it tell express to understand json //! Read JSON sent by the client
+
 // # GET handles a specific GEt request
 // this means:
 // ! It only responds to a GET request that matches its route. (like a user trying to load a page)
@@ -89,26 +91,115 @@ app.get("/error", (req, res)=>{
 // Response
 
 
-app.use((req, res, next)=>{
-    console.log("Method:", req.method);
-    console.log("URL:", req.url);
+// app.use((req, res, next)=>{
+//     console.log("Method:", req.method);
+//     console.log("URL:", req.url);
     
     
     
-    next(); // without this the middleware is gonna stop // # checkpoint
+//     next(); // without this the middleware is gonna stop // # checkpoint
+// });
+
+// app.use((req, res, next)=>{
+//     console.log("Checking request....");
+
+//     if(req.query.key !== "123"){
+//         return res.status(401).json({
+//             message: "Access denied"
+//         })
+//     }
+
+//     next();
+// })
+
+
+// # POST Request - it send data to the server
+
+// app.post("/students", (req, res)=>{ // create a post route
+//     const name = req.body.name; // get a student name // ! Get the data sent by the client
+//     const course = req.body.course; // get studnet course
+
+//     res.json({  // Send JSON back to the client
+//         message: "student recived",
+//         name: name,
+//         course: course
+//     });
+// });
+
+// # PUT Request - update the existing data
+
+// app.put("/students/:id", (req, res)=>{
+//     const id = req.params.id;
+//     const name = req.body.name;
+//     const course = req.body.course;
+
+//     res.json({
+//         message: "student updated",  
+//         id: id,
+//         name: name,
+//         course: course
+//     });
+// });
+
+
+// const students = [
+//     {
+//         id: 1,
+//         name: "ayush",
+//         course: "bca"
+//     },
+//     {
+//         id: 2,
+//         name: "rohit",
+//         course: "btech"
+//     }
+// ];
+
+// app.put("/student/:id", (req, res)=>{
+//     const id = Number(req.params.id);
+//     const student = students.find(student => student.id === id);
+
+//     if(!student){
+//         return res.status(404).json({
+//             message: "student not found"
+//         });
+//     };
+
+//     student.name = req.body.name;
+//     student.course = req.body.course;
+
+//     res.json({
+//         message: "student updated",
+//         student: student
+//     })
+// });
+
+
+
+const students = [
+    { id: 1, name: "ayush", course: "bca" },
+    { id: 2, name: "rohit", course: "btech" }
+];
+
+
+app.delete("/students/:id", (req, res)=>{
+    const id = Number(req.params.id);
+
+    const index = students.findIndex(student => student.id === id); //# It searches for the student and gives us its position in the array.
+
+    if(index === -1){
+        return res.status(404).json({
+            message: "studnet not found"
+        });
+    };
+
+    students.splice(index, 1);
+
+    res.json({
+        message: "student deleted"
+    });
 });
 
-app.use((req, res, next)=>{
-    console.log("Checking request....");
-
-    if(req.query.key !== "123"){
-        return res.status(401).json({
-            message: "Acess denied"
-        })
-    }
-
-    next();
-})
 
 
 module.exports = app; // export the app so we can use it to server.js
