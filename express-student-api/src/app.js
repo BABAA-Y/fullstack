@@ -1,8 +1,10 @@
-const express = require("express"); // load express packges
+// const router = require("./routes/studentRoutes")
 
-const app = express(); // create express application
+// const express = require("express"); // load express packges
 
-app.use(express.json()); // it tell express to understand json //! Read JSON sent by the client
+// const app = express(); // create express application
+
+// app.use(express.json()); // it tell express to understand json //! Read JSON sent by the client
 
 // # GET handles a specific GEt request
 // this means:
@@ -56,27 +58,27 @@ app.use(express.json()); // it tell express to understand json //! Read JSON sen
 // # 404 → Not found
 // # 500 → Server error
 
-app.get("/test", (req, res)=>{
-    res.status(200).send("everything is ok")
-});
+// app.get("/test", (req, res)=>{
+//     res.status(200).send("everything is ok")
+// });
 
-app.get("/created", (req, res)=>{
-    res.status(201).json({
-        message: "student created"
-    })
-})
+// app.get("/created", (req, res)=>{
+//     res.status(201).json({
+//         message: "student created"
+//     })
+// })
 
-app.get("/students/abc", (req, res) => {
-res.status(404).json({
-    message: "Not found"
-});
-});
+// app.get("/students/abc", (req, res) => {
+// res.status(404).json({
+//     message: "Not found"
+// });
+// });
 
-app.get("/error", (req, res)=>{
-    res.status(500).json({
-        message: "something went wrong"
-    });
-})
+// app.get("/error", (req, res)=>{
+//     res.status(500).json({
+//         message: "something went wrong"
+//     });
+// })
 
 
 
@@ -176,30 +178,46 @@ app.get("/error", (req, res)=>{
 
 
 
-const students = [
-    { id: 1, name: "ayush", course: "bca" },
-    { id: 2, name: "rohit", course: "btech" }
-];
+// const students = [
+//     { id: 1, name: "ayush", course: "bca" },
+//     { id: 2, name: "rohit", course: "btech" }
+// ];
 
 
-app.delete("/students/:id", (req, res)=>{
-    const id = Number(req.params.id);
+// app.delete("/students/:id", (req, res)=>{
+//     const id = Number(req.params.id);
 
-    const index = students.findIndex(student => student.id === id); //# It searches for the student and gives us its position in the array.
+//     const index = students.findIndex(student => student.id === id); //# It searches for the student and gives us its position in the array.
 
-    if(index === -1){
-        return res.status(404).json({
-            message: "studnet not found"
-        });
-    };
+//     if(index === -1){
+//         return res.status(404).json({
+//             message: "studnet not found"
+//         });
+//     };
 
-    students.splice(index, 1);
+//     students.splice(index, 1);
 
-    res.json({
-        message: "student deleted"
-    });
-});
+//     res.json({
+//         message: "student deleted"
+//     });
+// });
 
 
 
-module.exports = app; // export the app so we can use it to server.js
+// module.exports = app; // export the app so we can use it to server.js
+
+
+
+
+
+
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+
+const router = require("./routes/studentRoutes");
+
+app.use("/students", router);
+
+module.exports = app;
