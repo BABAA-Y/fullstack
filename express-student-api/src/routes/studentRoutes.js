@@ -41,16 +41,18 @@
 
 const express = require('express');
 const router = express.Router();
-const { getStudents, postStudent, putStudent, deletedStudent } = require("../controller/studentController");
+const { getStudents, postStudent, putStudent, deletedStudentController } = require("../controller/studentController");
+const validateStudent = require('../middleware/studentvalidation');
+const validateIdStudent = require('../middleware/studentIdValidation');
 
 
 
 router.get('/', getStudents);
 
-router.post('/', postStudent);
+router.post('/',validateStudent, postStudent);
 
-router.put('/:id', putStudent);
+router.put('/:id',validateStudent,validateIdStudent, putStudent);
 
-router.delete('/:id', deletedStudent);
+router.delete('/:id',validateIdStudent, deletedStudentController);
 
 module.exports = router;

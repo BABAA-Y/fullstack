@@ -1,36 +1,18 @@
-const students = [
-        {
-            id: 1,
-            name: "Ayush",
-            course: "BCA"
-        },
-        {
-            id: 2,
-            name: "Rohit",
-            course: "BTech"
-        }
-    ];
+const {
+    getAllStudents,
+    createStudent,
+    updateStudent,
+    deletedStudent
+} = require("../models/studentModles");
 
 const getStudents = (req, res)=>{
-     res.json(students);
+     res.json(getAllStudents());
 };
 
 const postStudent = (req, res) => {
     const { name, course } = req.body;
 
-    if (!name || !course) {
-        return res.status(400).json({
-            message: "Name and course are required"
-        });
-    }
-
-    const newStudent = {
-        id: students.length + 1,
-        name: name,
-        course: course
-    }
-
-    students.push(newStudent);
+    const newStudent = createStudent(name, course);
 
     res.status(201).json({
         message: "student created",
@@ -41,16 +23,15 @@ const postStudent = (req, res) => {
 const putStudent = (req, res) => {
     const id =  Number(req.params.id);
 
-    const student = students.find(student => student.id === id)
+    const { name, course } = req.body;
+
+    const student = updateStudent(id, name, course);
 
     if (!student) {
-        return res.status(404).json({
-            message: "Student not found",
-        });
-    };
-
-    student.name = req.body.name;
-    student.course = req.body.course;
+    return res.status(404).json({
+        message: "Student not found"
+    });
+    }
 
      res.json({
         message: "studnet updated",
@@ -58,25 +39,23 @@ const putStudent = (req, res) => {
      });
 }
 
-const deletedStudent = (req, res)=>{
+const deletedStudentController = (req, res)=>{
     const id = Number(req.params.id);
 
-    const index = students.findIndex(student => student.id === id);
+    const student = deletedStudent(id);
     
-    if (index === -1) {
+    if (!student) {
         return res.status(404).json({
             message: "student not found"
         });
     }
 
-    const deletedStudent = students.splice(index, 1)
-
     res.json({
         message: "Student Deleted",
-        student: deletedStudent[0]
+        student: student
     })
 }
 
 module.exports = {
-    getStudents, postStudent, putStudent, deletedStudent
+    getStudents, postStudent, putStudent, deletedStudentController
 };
