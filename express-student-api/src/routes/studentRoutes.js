@@ -51,6 +51,6 @@ router.post('/', postStudent);
 
 router.put('/:id', putStudent);
 
-router.delete('/:id', deletedStudent)
+router.delete('/:id', deletedStudent);
 
 module.exports = router;

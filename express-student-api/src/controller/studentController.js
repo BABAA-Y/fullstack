@@ -16,8 +16,13 @@ const getStudents = (req, res)=>{
 };
 
 const postStudent = (req, res) => {
-    const name = req.body.name;
-    const course = req.body.course;
+    const { name, course } = req.body;
+
+    if (!name || !course) {
+        return res.status(400).json({
+            message: "Name and course are required"
+        });
+    }
 
     const newStudent = {
         id: students.length + 1,
