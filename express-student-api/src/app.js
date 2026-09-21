@@ -209,9 +209,10 @@
 
 
 
-
+const AppError = require("./errors/AppError")
 const cors = require("cors")
 const express = require('express');
+const logger = require("./middleware/logger");
 
 const app = express();
 
@@ -219,6 +220,10 @@ app.use(cors({
     origin: process.env.FRONTEND_URL
 }));
 app.use(express.json());
+
+app.use(logger);
+
+app.use(express.static("public")); // # Serve the files inside the public folder directly.
 
 const router = require("./routes/studentRoutes");
 

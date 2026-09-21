@@ -33,6 +33,24 @@ const updateStudent = (id, name, course)=>{
     return student;
 }
 
+const patchStudent = (id, data)=>{
+    const student = students.find(student => student.id === id);
+
+    if (!student) {
+        return null;
+    }
+
+    if (data.name !== undefined) {
+       student.name = data.name; 
+    }
+
+    if (data.course !== undefined) {
+        student.course = data.course
+    }
+
+    return student;
+}
+
 const deletedStudent = (id)=>{
     const index = students.findIndex(student => student.id === id)
 
@@ -49,5 +67,6 @@ module.exports = {
     createStudent,
     updateStudent,
     deletedStudent,
-    getStudentById
+    getStudentById,
+    patchStudent
 }

@@ -4,7 +4,8 @@ const {
     createStudent,
     updateStudent,
     deletedStudent,
-    getStudentById
+    getStudentById,
+    patchStudent
 } = require("../models/studentModles");
 
 const getStudents = (req, res)=>{
@@ -49,6 +50,21 @@ const putStudent = (req, res) => {
      });
 }
 
+const patchStudentController =(req, res)=>{
+    const id = Number(req.params.id);
+
+    const student = patchStudent(id, req.body)
+
+    if (!student) {
+        throw new AppError("student not found", 404);
+    }
+    
+    res.json({
+        message: 'student updated',
+        student: student
+    })
+}
+
 const deletedStudentController = (req, res)=>{
     const id = Number(req.params.id);
 
@@ -65,5 +81,5 @@ const deletedStudentController = (req, res)=>{
 }
 
 module.exports = {
-    getStudents, postStudent, putStudent, deletedStudentController, getStudent
-};
+    getStudents, postStudent, putStudent, deletedStudentController, getStudent, patchStudentController
+}

@@ -41,10 +41,9 @@
 
 const express = require('express');
 const router = express.Router();
-const { getStudents, postStudent, putStudent, deletedStudentController, getStudent } = require("../controller/studentController");
+const { getStudents, postStudent, putStudent, deletedStudentController, getStudent, patchStudentController } = require("../controller/studentController");
 const validateStudent = require('../middleware/studentvalidation');
 const validateIdStudent = require('../middleware/studentIdValidation');
-
 
 router.get('/', getStudents);
 
@@ -53,6 +52,8 @@ router.get('/:id', validateIdStudent, getStudent);
 router.post('/',validateStudent, postStudent);
 
 router.put('/:id',validateStudent,validateIdStudent, putStudent);
+
+router.patch('/:id',validateIdStudent, patchStudentController);
 
 router.delete('/:id',validateIdStudent, deletedStudentController);
 
