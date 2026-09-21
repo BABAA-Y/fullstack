@@ -1,79 +1,45 @@
 # 🚀 Express Student API
 
-> A backend learning project built with **Node.js and Express.js** to understand how professional REST APIs are structured.
+> A beginner-friendly REST API built with **Node.js + Express.js** while learning backend development step by step.
 
-This project is being built step-by-step while learning backend development.
-
-The API started as a simple Express server and is gradually being organized into a cleaner architecture using:
+This project started as a simple Express server and has gradually grown into a structured backend using:
 
 **Routes → Middleware → Controllers → Models**
+
+The goal is not just to build an API, but to understand **why each part exists and how everything connects**.
 
 ---
 
 ## 📌 Project Status
 
-**Status:** 🚧 Under Development
+🟢 **Express.js Fundamentals — Mostly Completed**
 
-### Express Progress
-
-| Topic | Status |
-|---|:---:|
-| Express Basics | ✅ |
-| Express Application | ✅ |
-| `app.listen()` | ✅ |
-| Routes | ✅ |
-| `req` / `res` | ✅ |
-| Route Parameters | ✅ |
-| Query Parameters | ✅ |
-| Request Body | ✅ |
-| JSON Middleware | ✅ |
-| Custom Middleware | ✅ |
-| `next()` | ✅ |
-| HTTP Status Codes | ✅ |
-| GET | ✅ |
-| POST | ✅ |
-| PUT | ✅ |
-| DELETE | ✅ |
-| CRUD | ✅ |
-| `express.Router()` | ✅ |
-| Controllers | ✅ |
-| Models | ✅ |
-| Validation | ✅ |
-| Error Handling | ✅ |
-| MVC Structure | ✅ |
-
-### Upcoming Topics
-
-- ⏳ Better Error Handling
-- ⏳ Advanced Validation
-- ⏳ Authentication
-- ⏳ Database Integration
-- ⏳ CORS
-- ⏳ File Uploads
-- ⏳ Production API Structure
-- ⏳ Deployment
+🚧 **Project is still under development**
 
 ---
 
 # 🛠️ Tech Stack
 
-- **Node.js**
-- **Express.js**
-- **JavaScript**
-- **Thunder Client**
-- **Git & GitHub**
-- **VS Code**
+- 🟢 Node.js
+- 🟢 Express.js
+- 🟢 JavaScript
+- 🟢 Thunder Client
+- 🟢 Nodemon
+- 🟢 Git & GitHub
+- 🟢 VS Code
 
 ---
 
-# 📁 Project Architecture
-
-The project is being organized using a simple MVC-style structure:
+# 📂 Project Structure
 
 ```text
 express-student-api/
 │
+├── public/
+│   └── index.html
+│
 ├── src/
+│   │
 │   ├── app.js
 │   ├── server.js
 │   │
@@ -85,128 +51,93 @@ express-student-api/
 │   │
 │   ├── middlewares/
 │   │   ├── studentValidation.js
-│   │   └── studentIdValidation.js
+│   │   ├── studentIdValidation.js
+│   │   └── logger.js
 │   │
-│   └── models/
-│       └── studentModel.js
+│   ├── models/
+│   │   └── studentModel.js
+│   │
+│   └── errors/
+│       └── AppError.js
 │
+├── .env
 ├── .gitignore
-├── README.md
 ├── package.json
-└── package-lock.json
+├── package-lock.json
+└── README.md
 ```
 
 ---
 
-# 🚀 Getting Started
+# 🌱 What I Learned
 
-## 1. Initialize the project
+During this project I learned:
 
-```powershell
-npm init -y
-```
-
-## 2. Install Express
-
-```powershell
-npm install express
-```
-
-## 3. Install Nodemon
-
-```powershell
-npm install --save-dev nodemon
-```
-
----
-
-# 📜 NPM Scripts
-
-Recommended `package.json` scripts:
-
-```json
-{
-  "scripts": {
-    "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
-  }
-}
-```
-
-### Start normally
-
-```powershell
-npm start
-```
-
-### Start with Nodemon
-
-```powershell
-npm run dev
-```
-
-Nodemon automatically restarts the server when files change.
+- Express basics
+- Express application
+- Server setup
+- Routes
+- HTTP methods
+- Request and Response
+- Route parameters
+- Query parameters
+- Request body
+- JSON middleware
+- Custom middleware
+- `next()`
+- HTTP status codes
+- CRUD
+- Express Router
+- Controllers
+- Models
+- MVC-style architecture
+- Validation
+- ID validation
+- Error handling
+- Custom errors
+- 404 handling
+- Async controllers
+- CORS
+- Environment variables
+- Static files
+- Logging middleware
+- Middleware order
+- PATCH requests
 
 ---
 
-# 🌐 Running the Server
+# ⚡ 1. What is Express?
 
-## `server.js`
-
-```js
-const app = require("./app");
-
-app.listen(3000, () => {
-    console.log("Server running on port 3000");
-});
-```
-
-The API runs at:
-
-```text
-http://localhost:3000
-```
-
----
-
-# ⚡ Express Basics
-
-## What is Express?
-
-Express is a Node.js framework used for building:
+**Express.js** is a framework for Node.js that makes it easier to build:
 
 - Web servers
 - APIs
 - REST APIs
 - Backend applications
 
-It provides an easier way to work with HTTP requests, routes, middleware, and responses.
+Without Express, handling routes and requests directly with Node's `http` module requires more code.
+
+Express makes the process much simpler.
 
 ---
 
-# 🏗️ Creating an Express Application
+# 🏗️ 2. Creating an Express App
 
-```js
-const express = require("express");
-
-const app = express();
-```
-
-### What does this mean?
+First we load Express:
 
 ```js
 const express = require("express");
 ```
 
-Loads the Express package.
+Then we create the application:
 
 ```js
 const app = express();
 ```
 
-Creates the Express application.
+Think of `app` as our main Express application.
 
-The `app` object is used to create:
+We use it to create:
 
 - Routes
 - Middleware
@@ -214,33 +145,55 @@ The `app` object is used to create:
 
 ---
 
-# 📤 Exporting the App
+# 🌐 3. Starting the Server
 
-At the bottom of `app.js`:
+Our `server.js`:
+
+```js
+const app = require("./app");
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+```
+
+`app.listen()` starts the server and waits for requests.
+
+Example:
+
+```text
+http://localhost:5000
+```
+
+---
+
+# 📦 4. Exporting and Importing the App
+
+At the end of `app.js`:
 
 ```js
 module.exports = app;
 ```
 
-This allows another file to use the Express application.
-
-In `server.js`:
+Then in `server.js`:
 
 ```js
 const app = require("./app");
 ```
 
-The server can then start the imported app.
+This allows us to keep **application configuration** and **server startup** in separate files.
 
 ---
 
-# 🛣️ Routes
+# 🛣️ 5. Routes
 
 A route tells Express:
 
-> When a request matching this method and path arrives, run this code.
+> "When this HTTP method and URL are requested, run this code."
 
-Basic example:
+Example:
 
 ```js
 app.get("/", (req, res) => {
@@ -250,9 +203,9 @@ app.get("/", (req, res) => {
 
 ---
 
-# 🔵 GET Request
+# 🔵 6. GET
 
-`GET` is generally used to **retrieve/read data**.
+`GET` is generally used to **read or retrieve data**.
 
 Example:
 
@@ -270,9 +223,9 @@ GET /students
 
 ---
 
-# 🟢 POST Request
+# 🟢 7. POST
 
-`POST` is generally used to **send/create data**.
+`POST` is generally used to **create or send data**.
 
 Example:
 
@@ -290,9 +243,9 @@ app.post("/students", (req, res) => {
 
 ---
 
-# 🟡 PUT Request
+# 🟡 8. PUT
 
-`PUT` is generally used to **update existing data**.
+`PUT` is generally used to **update an existing resource**.
 
 Example:
 
@@ -306,9 +259,38 @@ app.put("/students/:id", (req, res) => {
 
 ---
 
-# 🔴 DELETE Request
+# 🟠 9. PATCH
 
-`DELETE` is used to **remove data**.
+`PATCH` is generally used for a **partial update**.
+
+Example:
+
+```text
+PATCH /students/1
+```
+
+Body:
+
+```json
+{
+    "course": "BCA CSE"
+}
+```
+
+Only the provided field is changed.
+
+### PUT vs PATCH
+
+```text
+PUT   → update the resource as a whole
+PATCH → update only the fields provided
+```
+
+---
+
+# 🔴 10. DELETE
+
+`DELETE` is used to remove data.
 
 Example:
 
@@ -322,7 +304,7 @@ app.delete("/students/:id", (req, res) => {
 
 ---
 
-# 🔄 CRUD
+# 🔄 11. CRUD
 
 CRUD means:
 
@@ -333,20 +315,22 @@ U → Update
 D → Delete
 ```
 
-Express API mapping:
+Our API uses:
 
-| Operation | HTTP Method | Example |
+| Operation | Method | Endpoint |
 |---|---|---|
 | Create | POST | `/students` |
 | Read | GET | `/students` |
+| Read One | GET | `/students/:id` |
 | Update | PUT | `/students/:id` |
+| Partial Update | PATCH | `/students/:id` |
 | Delete | DELETE | `/students/:id` |
 
 ---
 
-# 📦 Request and Response
+# 📥 12. Request and Response
 
-Routes commonly receive:
+Express routes commonly receive:
 
 ```js
 (req, res)
@@ -368,13 +352,11 @@ req.query
 req.body
 ```
 
----
-
 ## `res`
 
 `res` means **response**.
 
-It is used to send something back to the client.
+It is used to send data back to the client.
 
 Examples:
 
@@ -386,54 +368,9 @@ res.status()
 
 ---
 
-# 🔍 `req.method`
+# 🔢 13. Route Parameters
 
-Shows the HTTP method used by the client.
-
-Example:
-
-```js
-console.log(req.method);
-```
-
-Possible values:
-
-```text
-GET
-POST
-PUT
-DELETE
-```
-
----
-
-# 🔗 `req.url`
-
-Shows the requested URL.
-
-Example:
-
-```js
-console.log(req.url);
-```
-
-For:
-
-```text
-GET /students
-```
-
-the result is:
-
-```text
-/students
-```
-
----
-
-# 🔢 Route Parameters
-
-Route parameters are values included directly in the URL path.
+Route parameters are values inside the URL path.
 
 Example:
 
@@ -457,13 +394,13 @@ Here:
 req.params.id
 ```
 
-returns:
+gets:
 
 ```text
 "5"
 ```
 
-### Easy memory
+### Easy way to remember
 
 ```text
 /students/5
@@ -471,19 +408,19 @@ returns:
       req.params
 ```
 
-Route parameters are commonly used when identifying a specific resource.
+Route parameters are useful for identifying a specific resource.
 
 Examples:
 
 ```text
 /students/1
 /students/2
-/students/50
+/students/100
 ```
 
 ---
 
-# ❓ Query Parameters
+# ❓ 14. Query Parameters
 
 Query parameters come after `?`.
 
@@ -493,15 +430,7 @@ Example:
 /students?course=BCA
 ```
 
-Here:
-
-```text
-course=BCA
-```
-
-is a query parameter.
-
-Access it with:
+Access them with:
 
 ```js
 req.query.course
@@ -513,23 +442,11 @@ Example:
 app.get("/search", (req, res) => {
     const course = req.query.course;
 
-    res.send(`You searched for course: ${course}`);
+    res.send(`Course: ${course}`);
 });
 ```
 
-Request:
-
-```text
-GET /search?course=BCA
-```
-
-Result:
-
-```text
-You searched for course: BCA
-```
-
-Multiple query parameters are also possible:
+Multiple query parameters are possible:
 
 ```text
 /students?course=BCA&year=1
@@ -544,21 +461,19 @@ req.query.year
 
 ---
 
-# 🔀 Params vs Query
+# 🔀 15. Params vs Query
 
-## Route Parameter
+### Params
 
 ```text
 /students/5
           ↑
-       req.params
+      req.params
 ```
 
 Used to identify a specific resource.
 
----
-
-## Query Parameter
+### Query
 
 ```text
 /students?course=BCA
@@ -566,9 +481,9 @@ Used to identify a specific resource.
       req.query
 ```
 
-Used for things such as:
+Used for things like:
 
-- Search
+- Searching
 - Filtering
 - Sorting
 - Optional information
@@ -576,18 +491,18 @@ Used for things such as:
 ### Easy memory
 
 ```text
-PARAM → part of the path
+PARAM → part of the URL path
 
 QUERY → information after ?
 ```
 
 ---
 
-# 🧾 Request Body
+# 🧾 16. Request Body
 
-`req.body` contains data sent inside the request body.
+The request body contains data sent by the client.
 
-Example JSON:
+Example:
 
 ```json
 {
@@ -596,7 +511,13 @@ Example JSON:
 }
 ```
 
-Then:
+Access it using:
+
+```js
+req.body
+```
+
+For example:
 
 ```js
 req.body.name
@@ -608,21 +529,9 @@ returns:
 Ayush
 ```
 
-And:
-
-```js
-req.body.course
-```
-
-returns:
-
-```text
-BCA
-```
-
 ---
 
-# 🧩 JSON Middleware
+# 🧩 17. `express.json()`
 
 To allow Express to read JSON request bodies:
 
@@ -637,7 +546,7 @@ This is middleware.
 ```text
 Client
    ↓
-JSON body
+JSON Body
    ↓
 express.json()
    ↓
@@ -646,11 +555,11 @@ req.body
 Route / Controller
 ```
 
-Without this middleware, JSON data may not be available through `req.body`.
+Without it, JSON request data may not be available in `req.body`.
 
 ---
 
-# 🧰 Middleware
+# 🧰 18. Middleware
 
 Middleware is a function that runs during the request/response process.
 
@@ -670,24 +579,24 @@ Example:
 
 ```js
 app.use((req, res, next) => {
-    console.log("Middleware running...");
+    console.log("Middleware running");
     next();
 });
 ```
 
 ---
 
-# ➡️ `next()`
+# ➡️ 19. `next()`
 
-`next()` means:
+`next()` simply means:
 
-> Continue to the next step.
+> **Continue to the next step.**
 
 Example:
 
 ```js
 app.use((req, res, next) => {
-    console.log("Checking request...");
+    console.log("Checking...");
     next();
 });
 ```
@@ -701,7 +610,7 @@ Middleware
    ↓
 next()
    ↓
-Next middleware / Route
+Next middleware / route
 ```
 
 Without `next()`:
@@ -722,11 +631,11 @@ next() = "Go ahead"
 
 ---
 
-# 🌍 `app.use()` vs `app.get()`
+# 🌍 20. `app.use()` vs `app.get()`
 
-## `app.get()`
+### `app.get()`
 
-Handles a specific GET route.
+Handles a specific GET route:
 
 ```js
 app.get("/students", (req, res) => {
@@ -734,26 +643,16 @@ app.get("/students", (req, res) => {
 });
 ```
 
-It handles:
+### `app.use()`
 
-```text
-GET /students
-```
-
----
-
-## `app.use()`
-
-Used for middleware.
+Used mainly for middleware:
 
 ```js
 app.use((req, res, next) => {
-    console.log(req.method);
+    console.log("Middleware");
     next();
 });
 ```
-
-Middleware can be used across different request methods and routes.
 
 ### Easy memory
 
@@ -765,640 +664,86 @@ app.use() → middleware in the request flow
 
 ---
 
-# 📝 Logging Middleware
+# 📝 21. Logging Middleware
 
-Example:
+We created a reusable logger:
 
 ```js
-app.use((req, res, next) => {
-    console.log("Method:", req.method);
-    console.log("URL:", req.url);
-
+const logger = (req, res, next) => {
+    console.log(`${req.method} ${req.url}`);
     next();
-});
-```
-
-For:
-
-```text
-GET /students
-```
-
-the terminal may show:
-
-```text
-Method: GET
-URL: /students
-```
-
----
-
-# 🔐 Middleware Can Check Requests
-
-Middleware can check information before allowing a request to continue.
-
-Example:
-
-```js
-app.use((req, res, next) => {
-    if (req.query.key !== "123") {
-        return res.status(401).json({
-            message: "Access denied"
-        });
-    }
-
-    next();
-});
-```
-
-Flow:
-
-```text
-Request
-   ↓
-Middleware checks request
-   ↓
-Invalid → Response → STOP
-```
-
-or:
-
-```text
-Request
-   ↓
-Middleware checks request
-   ↓
-Valid
-   ↓
-next()
-   ↓
-Route
-```
-
----
-
-# 📊 HTTP Status Codes
-
-Status codes tell the client what happened.
-
-| Code | Meaning |
-|---|---|
-| `200` | OK / successful request |
-| `201` | Created |
-| `400` | Bad Request |
-| `401` | Unauthorized |
-| `404` | Not Found |
-| `500` | Internal Server Error |
-
-Example:
-
-```js
-res.status(201).json({
-    message: "Student created"
-});
-```
-
----
-
-# ❌ 404 Handler
-
-A 404 handler can handle routes that don't exist.
-
-```js
-app.use((req, res) => {
-    res.status(404).json({
-        message: "Route not found"
-    });
-});
-```
-
-Example:
-
-```text
-GET /something-that-does-not-exist
-```
-
-Response:
-
-```json
-{
-    "message": "Route not found"
-}
-```
-
----
-
-# 💥 Error Handling Middleware
-
-Express error-handling middleware has **four parameters**:
-
-```js
-(err, req, res, next)
-```
-
-Example:
-
-```js
-app.use((err, req, res, next) => {
-    console.log(err.message);
-
-    res.status(500).json({
-        message: "Something went wrong"
-    });
-});
-```
-
----
-
-# ⚠️ `next()` vs `next(error)`
-
-Normal:
-
-```js
-next();
-```
-
-Means:
-
-```text
-Continue normally
-```
-
-Error:
-
-```js
-next(error);
-```
-
-Means:
-
-```text
-Send the error to error-handling middleware
-```
-
-Example:
-
-```js
-app.get("/test-error", (req, res, next) => {
-    const error = new Error("Test error");
-
-    next(error);
-});
-```
-
----
-
-# 🛣️ Express Router
-
-As the project grows, putting every route inside `app.js` becomes difficult to manage.
-
-`express.Router()` allows routes to be separated into their own files.
-
-Example:
-
-```js
-const express = require("express");
-
-const router = express.Router();
-```
-
-A router is like a **mini route manager**.
-
----
-
-# 📁 Student Router
-
-Example:
-
-```js
-router.get("/", (req, res) => {
-    res.send("Student route is working!");
-});
-```
-
-Export it:
-
-```js
-module.exports = router;
-```
-
-Import it into `app.js`:
-
-```js
-const router = require("./routes/studentRoutes");
-```
-
-Connect it:
-
-```js
-app.use("/students", router);
-```
-
----
-
-# 🔗 Router Prefixes
-
-If `app.js` contains:
-
-```js
-app.use("/students", router);
-```
-
-and the router contains:
-
-```js
-router.get("/");
-```
-
-the final route becomes:
-
-```text
-GET /students
-```
-
-The paths are combined:
-
-```text
-/students + /
-        ↓
-/students
-```
-
-Another example:
-
-```js
-router.get("/:id");
-```
-
-becomes:
-
-```text
-GET /students/:id
-```
-
-So:
-
-```text
-GET /students/5
-```
-
-matches:
-
-```js
-router.get("/:id");
-```
-
----
-
-# 🧠 Why Router Is Useful
-
-Instead of:
-
-```text
-app.js
-├── GET /students
-├── POST /students
-├── PUT /students/:id
-├── DELETE /students/:id
-└── many more routes...
-```
-
-we can organize:
-
-```text
-app.js
-      ↓
-studentRoutes.js
-      ↓
-student-related routes
-```
-
-This keeps the application cleaner and easier to maintain.
-
----
-
-# 🧱 Controllers
-
-A controller contains the logic for handling a request.
-
-Instead of writing everything directly inside the route:
-
-```js
-router.get("/", (req, res) => {
-    // lots of logic
-});
-```
-
-we move the logic into a controller.
-
-Example:
-
-```js
-const getStudents = (req, res) => {
-    res.json({
-        message: "Get students controller is working"
-    });
 };
-```
 
-Export:
-
-```js
-module.exports = {
-    getStudents
-};
-```
-
----
-
-# 🔗 Route → Controller
-
-Import the controller:
-
-```js
-const { getStudents } = require("../controllers/studentController");
+module.exports = logger;
 ```
 
 Then:
 
 ```js
-router.get("/", getStudents);
+app.use(logger);
 ```
 
-Now the route only decides **where the request goes**.
-
-The controller decides **what happens**.
-
-### Easy memory
+Now requests can appear like:
 
 ```text
-Routes      → Where?
-Controllers → What?
+GET /students
+POST /students
+PUT /students/1
+DELETE /students/1
 ```
+
+This avoids writing logging code in every route.
 
 ---
 
-# 🗃️ Models
+# 🔢 22. Middleware Order
 
-A Model handles application data.
-
-Initially, the student data was inside the controller.
-
-It was moved into:
-
-```text
-models/studentModel.js
-```
+Express processes middleware **from top to bottom**.
 
 Example:
 
 ```js
-const students = [
-    {
-        id: 1,
-        name: "Ayush",
-        course: "BCA"
-    },
-    {
-        id: 2,
-        name: "Rohit",
-        course: "BTech"
-    }
-];
+app.use(cors());
+app.use(express.json());
+app.use(logger);
+
+app.use("/students", router);
 ```
 
----
+The request goes through these in order.
 
-# 📤 Model Functions
+### Important rule
 
-Instead of letting the controller directly manipulate the array, the Model provides functions.
+> **The order of middleware and routes matters.**
 
-Example:
+For example:
 
 ```js
-const getAllStudents = () => {
-    return students;
-};
+router.get("/async-error", testAsyncError);
+router.get("/:id", validateIdStudent, getStudent);
 ```
 
-Export:
+The specific route should come before the dynamic route.
 
-```js
-module.exports = {
-    getAllStudents
-};
-```
-
-The controller can then use:
-
-```js
-const { getAllStudents } = require("../models/studentModel");
-```
-
-and:
-
-```js
-const getStudents = (req, res) => {
-    res.json(getAllStudents());
-};
-```
-
-Important:
-
-```js
-getAllStudents
-```
-
-means the function itself.
-
-```js
-getAllStudents()
-```
-
-means execute the function.
-
----
-
-# ➕ Creating Students in the Model
-
-Example:
-
-```js
-const createStudent = (name, course) => {
-    const newStudent = {
-        id: students.length + 1,
-        name,
-        course
-    };
-
-    students.push(newStudent);
-
-    return newStudent;
-};
-```
-
-The controller can call:
-
-```js
-const newStudent = createStudent(name, course);
-```
-
-Now the Model handles the data operation.
-
----
-
-# ✏️ Updating Students in the Model
-
-Example:
-
-```js
-const updateStudent = (id, name, course) => {
-    const student = students.find(student => student.id === id);
-
-    if (!student) {
-        return null;
-    }
-
-    student.name = name;
-    student.course = course;
-
-    return student;
-};
-```
-
-The Model:
-
-1. Finds the student
-2. Returns `null` if not found
-3. Updates the student
-4. Returns the updated student
-
----
-
-# 🗑️ Deleting Students in the Model
-
-Example:
-
-```js
-const deleteStudent = (id) => {
-    const index = students.findIndex(student => student.id === id);
-
-    if (index === -1) {
-        return null;
-    }
-
-    const deletedStudent = students.splice(index, 1);
-
-    return deletedStudent[0];
-};
-```
-
----
-
-# 🔎 Array Methods Learned
-
-## `find()`
-
-Finds the first matching item.
-
-```js
-const student = students.find(student => student.id === id);
-```
-
-If found:
+Otherwise:
 
 ```text
-student object
+/async-error
 ```
 
-If not found:
+could be treated as:
 
 ```text
-undefined
+/:id
 ```
 
 ---
 
-## `findIndex()`
-
-Finds the position of a matching item.
-
-```js
-const index = students.findIndex(
-    student => student.id === id
-);
-```
-
-Results:
-
-```text
-0, 1, 2... → found
--1          → not found
-```
-
----
-
-## `splice()`
-
-Actually modifies the array.
-
-```js
-students.splice(index, 1);
-```
-
-Meaning:
-
-> Start at `index` and remove `1` item.
-
----
-
-## `slice()` vs `splice()`
-
-### `slice()`
-
-Creates a copy.
-
-```js
-students.slice(index, 1);
-```
-
-Does **not** remove the student.
-
-### `splice()`
-
-Changes the original array.
-
-```js
-students.splice(index, 1);
-```
-
-Actually removes the student.
-
----
-
-# ✅ Validation
+# 🛡️ 23. Validation
 
 Validation means:
 
-> Check whether incoming data is acceptable before using it.
-
-Basic flow:
-
-```text
-Request
-   ↓
-Validation
-   ↓
-Valid? ── No → Error
-   │
-  Yes
-   ↓
-Controller
-```
-
----
-
-# 📝 Student Validation Middleware
+> **Check whether incoming data is acceptable before using it.**
 
 Example:
 
@@ -1421,59 +766,46 @@ const validateStudent = (req, res, next) => {
 };
 ```
 
----
-
-# 🔗 Using Validation Middleware
-
-A route can use middleware before the controller:
-
-```js
-router.post("/", validateStudent, postStudent);
-```
-
 Flow:
 
 ```text
-POST /students
-      ↓
-validateStudent
-      ↓
-postStudent
-```
-
-If validation fails:
-
-```text
-400 Response
-      ↓
-STOP
-```
-
-If validation succeeds:
-
-```text
+Request
+   ↓
+Validation
+   ↓
+Valid? ── No → 400
+   │
+  Yes
+   ↓
 next()
-  ↓
-postStudent
+   ↓
+Controller
 ```
 
 ---
 
-# ♻️ Reusing Middleware
+# 🔗 24. Reusing Middleware
 
-The same validation middleware can be used for multiple routes:
+The same middleware can be reused on multiple routes.
+
+Example:
 
 ```js
 router.post("/", validateStudent, postStudent);
 
-router.put("/:id", validateIdStudent, validateStudent, putStudent);
+router.put(
+    "/:id",
+    validateIdStudent,
+    validateStudent,
+    putStudent
+);
 ```
 
-This avoids repeating the same validation logic inside every controller.
+This avoids repeating the same validation code.
 
 ---
 
-# 🔢 ID Validation Middleware
+# 🔢 25. ID Validation
 
 Route parameters are strings.
 
@@ -1483,26 +815,34 @@ Example:
 /students/5
 ```
 
+gives:
+
 ```js
 req.params.id
 ```
 
-returns:
+as:
 
 ```text
 "5"
 ```
 
-Convert it:
+We convert it:
 
 ```js
-const id = Number(req.params.id);
+Number(req.params.id)
 ```
 
-But:
+If the user sends:
 
 ```text
 /students/abc
+```
+
+then:
+
+```js
+Number("abc")
 ```
 
 becomes:
@@ -1511,7 +851,11 @@ becomes:
 NaN
 ```
 
-So we validate it.
+We can detect that with:
+
+```js
+Number.isNaN(id)
+```
 
 Example:
 
@@ -1531,83 +875,389 @@ const validateIdStudent = (req, res, next) => {
 
 ---
 
-# 🧠 Important JavaScript Lessons
+# 📊 26. HTTP Status Codes
 
-## `typeof`
+Status codes tell the client what happened.
 
-Used to check the type of a value.
+| Code | Meaning |
+|---|---|
+| `200` | OK |
+| `201` | Created |
+| `400` | Bad Request |
+| `401` | Unauthorized |
+| `404` | Not Found |
+| `500` | Internal Server Error |
+
+Example:
+
+```js
+res.status(201).json({
+    message: "Student created"
+});
+```
+
+---
+
+# ❌ 27. 404 Handler
+
+A 404 handler deals with routes that don't exist.
+
+```js
+app.use((req, res, next) => {
+    next(new AppError("Route not found", 404));
+});
+```
+
+So:
+
+```text
+GET /abc
+```
+
+can result in:
+
+```json
+{
+    "message": "Route not found"
+}
+```
+
+---
+
+# 💥 28. Error Handling Middleware
+
+Error-handling middleware has **four parameters**:
+
+```js
+(err, req, res, next)
+```
+
+Example:
+
+```js
+app.use((err, req, res, next) => {
+    console.log(err.message);
+
+    res.status(err.statusCode || 500).json({
+        message: err.message || "Something went wrong"
+    });
+});
+```
+
+---
+
+# ⚠️ 29. `next()` vs `next(error)`
+
+Normal:
+
+```js
+next();
+```
+
+means:
+
+```text
+Continue normally
+```
+
+Error:
+
+```js
+next(error);
+```
+
+means:
+
+```text
+Send this error to the error handler
+```
+
+---
+
+# 📦 30. Custom `AppError`
+
+We created our own error class:
+
+```js
+class AppError extends Error {
+    constructor(message, statusCode) {
+        super(message);
+
+        this.statusCode = statusCode;
+        this.isOperational = true;
+    }
+}
+
+module.exports = AppError;
+```
+
+It allows us to store:
+
+```text
+message
+statusCode
+```
+
+Example:
+
+```js
+throw new AppError("Student not found", 404);
+```
+
+Now the error contains:
+
+```text
+message    → Student not found
+statusCode → 404
+```
+
+---
+
+# 🧠 31. Why `AppError`?
+
+Without `AppError`:
+
+```js
+return res.status(404).json({
+    message: "Student not found"
+});
+```
+
+The controller creates the response itself.
+
+With `AppError`:
+
+```js
+throw new AppError("Student not found", 404);
+```
+
+The controller reports the error.
+
+The central error handler creates the response.
+
+### Flow
+
+```text
+Controller
+    ↓
+throw AppError
+    ↓
+Central Error Handler
+    ↓
+Response
+```
+
+---
+
+# ⚡ 32. Async Controllers
+
+Express controllers can also be asynchronous.
+
+Example:
+
+```js
+const testAsync = async (req, res) => {
+    const message = await Promise.resolve(
+        "Async controller works!"
+    );
+
+    res.json({
+        message: message
+    });
+};
+```
+
+The important part is:
+
+```js
+async
+```
+
+and:
+
+```js
+await
+```
+
+This becomes especially important when working with databases.
+
+---
+
+# 💥 33. Async Errors
+
+An async controller can throw an error:
+
+```js
+const testAsyncError = async (req, res) => {
+    throw new AppError(
+        "Async error happened",
+        500
+    );
+};
+```
+
+The error can reach the centralized error-handling flow.
+
+---
+
+# 🛣️ 34. Express Router
+
+As the project grows, putting every route in `app.js` becomes messy.
+
+Express provides:
+
+```js
+express.Router()
+```
+
+to organize routes.
+
+Example:
+
+```js
+const express = require("express");
+
+const router = express.Router();
+```
+
+---
+
+# 🔗 35. Router Prefixes
+
+In `app.js`:
+
+```js
+app.use("/students", router);
+```
+
+Inside the router:
+
+```js
+router.get("/");
+```
+
+Together they create:
+
+```text
+GET /students
+```
+
+And:
+
+```js
+router.get("/:id");
+```
+
+becomes:
+
+```text
+GET /students/:id
+```
+
+### Easy idea
+
+```text
+app.use("/students", router)
+            +
+router.get("/")
+            ↓
+GET /students
+```
+
+---
+
+# 🎯 36. Routes + Controllers
+
+Instead of putting everything inside a route:
+
+```js
+router.get("/", (req, res) => {
+    // lots of logic
+});
+```
+
+we create a controller:
+
+```js
+const getStudents = (req, res) => {
+    res.json(getAllStudents());
+};
+```
+
+Then the route becomes:
+
+```js
+router.get("/", getStudents);
+```
+
+### Easy memory
+
+```text
+Routes      → Where should the request go?
+Controllers → What should happen?
+```
+
+---
+
+# 🗃️ 37. Models
+
+A Model manages application data.
+
+Our model currently uses a JavaScript array:
+
+```js
+const students = [];
+```
+
+The data is temporary.
+
+Example:
+
+```js
+const getAllStudents = () => {
+    return students;
+};
+```
+
+---
+
+# 📤 38. Model Functions
+
+Instead of letting controllers directly change the data, the Model provides functions.
 
 Examples:
 
 ```js
-typeof "Ayush"
+getAllStudents()
 ```
-
-→ `"string"`
 
 ```js
-typeof 123
+createStudent(name, course)
 ```
-
-→ `"number"`
 
 ```js
-typeof true
+getStudentById(id)
 ```
 
-→ `"boolean"`
+```js
+updateStudent(id, name, course)
+```
+
+```js
+patchStudent(id, data)
+```
+
+```js
+deletedStudent(id)
+```
+
+This keeps data operations inside the Model.
 
 ---
 
-## `Number()`
+# 🔄 39. MVC-Style Architecture
 
-Converts a value to a number.
-
-```js
-Number("5")
-```
-
-→ `5`
-
-```js
-Number("abc")
-```
-
-→ `NaN`
-
----
-
-## `Number.isNaN()`
-
-Checks whether a value is `NaN`.
-
-```js
-Number.isNaN(id)
-```
-
----
-
-## `trim()`
-
-Removes extra spaces from the beginning and end of a string.
-
-```js
-"Ayush".trim()
-```
-
-→ `"Ayush"`
-
-```js
-"   Ayush   ".trim()
-```
-
-→ `"Ayush"`
-
----
-
-# 🧱 MVC Architecture
-
-The project is now following a simple MVC-style architecture.
+Our project now follows a simple MVC-style architecture:
 
 ```text
 Request
@@ -1625,114 +1275,30 @@ Data
 
 ### Route
 
-Decides:
-
-> Which handler should process this request?
+Decides **where** the request goes.
 
 ### Middleware
 
-Checks or processes the request before continuing.
+Checks or processes the request.
 
 ### Controller
 
-Contains request-handling logic.
+Handles the request logic.
 
 ### Model
 
-Works with the application data.
+Works with the data.
 
 ---
 
-# 🔄 Complete Example Flow
-
-For:
-
-```text
-POST /students
-```
-
-the flow is:
-
-```text
-Thunder Client
-      ↓
-POST /students
-      ↓
-studentRoutes.js
-      ↓
-validateStudent
-      ↓
-postStudent
-      ↓
-createStudent()
-      ↓
-studentModel.js
-      ↓
-students.push()
-      ↓
-Response
-```
-
-For:
-
-```text
-PUT /students/1
-```
-
-the flow is:
-
-```text
-Thunder Client
-      ↓
-PUT /students/1
-      ↓
-validateIdStudent
-      ↓
-validateStudent
-      ↓
-putStudent
-      ↓
-updateStudent()
-      ↓
-Model
-      ↓
-Response
-```
-
-For:
-
-```text
-DELETE /students/1
-```
-
-the flow is:
-
-```text
-Thunder Client
-      ↓
-DELETE /students/1
-      ↓
-validateIdStudent
-      ↓
-delete controller
-      ↓
-deleteStudent()
-      ↓
-Model
-      ↓
-Response
-```
-
----
-
-# 🧪 API Testing with Thunder Client
+# 🧪 40. Thunder Client
 
 Thunder Client is used to test the API without building a frontend.
 
 Base URL:
 
 ```text
-http://localhost:3000
+http://localhost:5000
 ```
 
 ---
@@ -1743,24 +1309,12 @@ http://localhost:3000
 GET /students
 ```
 
-Full URL:
-
-```text
-http://localhost:3000/students
-```
-
 ---
 
-## GET Student by ID
+## GET One Student
 
 ```text
 GET /students/1
-```
-
-Full URL:
-
-```text
-http://localhost:3000/students/1
 ```
 
 ---
@@ -1780,12 +1334,6 @@ Body:
 }
 ```
 
-Expected status:
-
-```text
-201 Created
-```
-
 ---
 
 ## PUT Student
@@ -1803,9 +1351,21 @@ Body:
 }
 ```
 
-Expected result:
+---
 
-The student's information is updated.
+## PATCH Student
+
+```text
+PATCH /students/1
+```
+
+Body:
+
+```json
+{
+    "course": "BCA CSE"
+}
+```
 
 ---
 
@@ -1815,113 +1375,379 @@ The student's information is updated.
 DELETE /students/1
 ```
 
-No request body is required for the current implementation.
-
-Expected result:
-
-The student is removed.
+No body is required for the current implementation.
 
 ---
 
-# 📋 API Summary
+# 🌐 41. CORS
 
-| Method | Endpoint | Purpose |
-|---|---|---|
-| GET | `/students` | Get all students |
-| GET | `/students/:id` | Get a student by ID |
-| POST | `/students` | Create a student |
-| PUT | `/students/:id` | Update a student |
-| DELETE | `/students/:id` | Delete a student |
+CORS stands for:
 
----
+**Cross-Origin Resource Sharing**
 
-# 💾 Current Data Storage
+It is mainly a browser security mechanism that controls which origins are allowed to access a server from a different origin.
 
-At the moment, students are stored in a JavaScript array:
+Example:
 
-```js
-const students = [
-    {
-        id: 1,
-        name: "Ayush",
-        course: "BCA"
-    },
-    {
-        id: 2,
-        name: "Rohit",
-        course: "BTech"
-    }
-];
+```text
+Frontend
+http://localhost:5173
+
+Backend
+http://localhost:5000
 ```
 
-This is only **temporary in-memory storage**.
-
-### Important limitation
-
-When the server restarts, the data returns to its original state.
-
-A real database will be introduced later.
+These are different origins.
 
 ---
 
-# ⚠️ Common Problems Learned
+# 🔓 42. Basic CORS
+
+CORS can be enabled with:
+
+```js
+const cors = require("cors");
+
+app.use(cors());
+```
+
+---
+
+# 🔐 43. Restricted CORS
+
+Instead of allowing every origin, we configured:
+
+```js
+app.use(cors({
+    origin: process.env.FRONTEND_URL
+}));
+```
+
+And in `.env`:
+
+```env
+FRONTEND_URL=http://localhost:5173
+```
+
+This makes the allowed frontend configurable.
+
+---
+
+# 🧠 44. CORS and Thunder Client
+
+CORS is mainly enforced by browsers.
+
+So it is possible to see:
+
+```text
+✅ Thunder Client works
+❌ Browser frontend gets a CORS error
+```
+
+This doesn't automatically mean the API is broken.
+
+---
+
+# ⚙️ 45. Environment Variables
+
+Environment variables allow configuration and sensitive values to stay outside the source code.
+
+Example:
+
+```env
+PORT=5000
+FRONTEND_URL=http://localhost:5173
+```
+
+Access them with:
+
+```js
+process.env.PORT
+```
+
+and:
+
+```js
+process.env.FRONTEND_URL
+```
+
+---
+
+# 🔐 46. Why `.env`?
+
+Later we may have values such as:
+
+```env
+PORT=5000
+DATABASE_URL=...
+JWT_SECRET=...
+API_KEY=...
+```
+
+These shouldn't be hard-coded directly into the application.
+
+---
+
+# 🚫 47. Never Commit `.env`
+
+`.env` should be listed in `.gitignore`:
+
+```text
+node_modules/
+.env
+*.log
+```
+
+This prevents private environment values from being added to Git.
+
+---
+
+# ▶️ 48. Loading `.env`
+
+Node can load the `.env` file using:
+
+```powershell
+node --env-file=.env src/server.js
+```
+
+Our development script uses the same idea:
+
+```text
+nodemon --exec "node --env-file=.env" src/server.js
+```
+
+So:
+
+```text
+.env
+ ↓
+process.env
+ ↓
+Application
+```
+
+---
+
+# 📁 49. Static Files
+
+Express can serve files using:
+
+```js
+app.use(express.static("public"));
+```
+
+Our folder:
+
+```text
+public/
+└── index.html
+```
+
+can then be served by Express.
+
+This is useful for:
+
+- HTML
+- CSS
+- JavaScript
+- Images
+- Other static files
+
+---
+
+# 📝 50. Middleware for Static Files
+
+The request flow can look like:
+
+```text
+Request
+   ↓
+express.static()
+   ↓
+File found?
+   ├── Yes → Serve file
+   └── No  → Continue
+              ↓
+           API routes
+```
+
+So static files and API routes can exist in the same Express application.
+
+---
+
+# 🧠 51. Important JavaScript Concepts Used
+
+## `typeof`
+
+Checks the data type:
+
+```js
+typeof "Ayush"
+```
+
+→ `"string"`
+
+```js
+typeof 123
+```
+
+→ `"number"`
+
+---
+
+## `Number()`
+
+Converts a value to a number:
+
+```js
+Number("5")
+```
+
+→ `5`
+
+```js
+Number("abc")
+```
+
+→ `NaN`
+
+---
+
+## `Number.isNaN()`
+
+Checks whether a value is `NaN`:
+
+```js
+Number.isNaN(id)
+```
+
+---
+
+## `trim()`
+
+Removes extra spaces:
+
+```js
+"   Ayush   ".trim()
+```
+
+→
+
+```text
+Ayush
+```
+
+---
+
+## `find()`
+
+Finds the first matching item:
+
+```js
+students.find(student => student.id === id);
+```
+
+---
+
+## `findIndex()`
+
+Returns the index of a matching item:
+
+```js
+students.findIndex(student => student.id === id);
+```
+
+Returns:
+
+```text
+0, 1, 2... → found
+-1          → not found
+```
+
+---
+
+## `splice()`
+
+Changes the original array:
+
+```js
+students.splice(index, 1);
+```
+
+This removes one item.
+
+---
+
+## `slice()` vs `splice()`
+
+### `slice()`
+
+Copies part of an array.
+
+```js
+students.slice(index, 1);
+```
+
+Does **not** remove the item.
+
+### `splice()`
+
+Changes the original array.
+
+```js
+students.splice(index, 1);
+```
+
+Removes the item.
+
+---
+
+# ⚠️ 52. Common Errors We Fixed
 
 ## `Cannot GET /`
 
-Usually means Express doesn't have a matching GET route.
+Usually means no matching GET route exists.
 
 ---
 
 ## `Cannot PUT /students/1`
 
-Usually means the method and route do not match.
+The method or path didn't match the route.
 
 For example:
 
 ```js
-router.put("/student/:id")
+router.put("/student/:id");
 ```
 
-does not match:
+doesn't match:
 
 ```text
 PUT /students/1
 ```
 
-because:
-
-```text
-student ≠ students
-```
-
-Routes must match exactly.
-
 ---
 
 ## `req.body` is undefined
 
-Make sure JSON middleware exists:
+Make sure:
 
 ```js
 app.use(express.json());
 ```
 
-and that it appears before routes that need JSON data.
-
-The client must also send JSON correctly.
+is added before the routes that need JSON.
 
 ---
 
 ## `argument handler must be a function`
 
-This can happen when a controller is imported incorrectly.
+Usually means the imported controller is not actually a function.
 
-For example:
+Example:
 
 ```js
-const {
-    getStudents
-} = require("../controllers/studentController");
+const { getStudents } = require("../controllers/studentController");
 ```
 
 must match the exported name:
@@ -1934,281 +1760,231 @@ module.exports = {
 
 ---
 
-## Function vs Function Call
+## `students is not defined`
 
-These are different:
-
-```js
-getAllStudents
-```
-
-and:
+After moving data into the Model, the controller should use Model functions instead of directly accessing:
 
 ```js
-getAllStudents()
+students
 ```
-
-The first refers to the function.
-
-The second executes the function.
 
 ---
 
-# 🧠 Important Express Cheat Sheet
+## Route order problem
+
+A dynamic route like:
 
 ```js
-app.get()
+router.get("/:id", ...)
 ```
 
-Handle a GET route.
-
-```js
-app.post()
-```
-
-Handle a POST route.
-
-```js
-app.put()
-```
-
-Handle a PUT route.
-
-```js
-app.delete()
-```
-
-Handle a DELETE route.
-
-```js
-app.use()
-```
-
-Use middleware.
-
-```js
-next()
-```
-
-Continue to the next handler.
-
-```js
-next(error)
-```
-
-Send an error to error-handling middleware.
-
-```js
-req.params
-```
-
-Get route parameters.
-
-```js
-req.query
-```
-
-Get query parameters.
-
-```js
-req.body
-```
-
-Get request body data.
-
-```js
-res.send()
-```
-
-Send a general response.
-
-```js
-res.json()
-```
-
-Send a JSON response.
-
-```js
-res.status()
-```
-
-Set the HTTP status code.
-
-```js
-express.Router()
-```
-
-Create a separate router.
-
----
-
-# 🗺️ Learning Roadmap
-
-## Express Fundamentals
-
-- ✅ Express installation
-- ✅ Express application
-- ✅ Server setup
-- ✅ Routes
-- ✅ Request / Response
-- ✅ HTTP methods
-- ✅ Params
-- ✅ Query
-- ✅ Request body
-
-## Middleware
-
-- ✅ `app.use()`
-- ✅ `next()`
-- ✅ Custom middleware
-- ✅ Logging middleware
-- ✅ JSON middleware
-- ✅ Validation middleware
-- ✅ ID validation middleware
-
-## REST API
-
-- ✅ GET
-- ✅ POST
-- ✅ PUT
-- ✅ DELETE
-- ✅ CRUD
-- ✅ HTTP status codes
-
-## Project Architecture
-
-- ✅ Express Router
-- ✅ Controllers
-- ✅ Models
-- ✅ MVC-style structure
-- ✅ Route → Middleware → Controller → Model
-
-## Error Handling
-
-- ✅ Error middleware
-- ✅ `next(error)`
-- ✅ 404 handler
-
-## Next
-
-- ⏳ Centralized error handling improvements
-- ⏳ Better validation
-- ⏳ CORS
-- ⏳ Environment variables
-- ⏳ Database
-- ⏳ Authentication
-- ⏳ File uploads
-- ⏳ Production structure
-- ⏳ Deployment
-
----
-
-# 🎯 Project Goal
-
-The goal of this project is to evolve a simple learning API into a complete backend application.
-
-Planned architecture:
+can match:
 
 ```text
-Client
-  ↓
+/async-error
+```
+
+so specific routes should usually appear before broad dynamic routes.
+
+---
+
+# 🔄 53. Complete Request Flow
+
+For example:
+
+```text
+POST /students
+       ↓
+       Route
+       ↓
+Validation Middleware
+       ↓
+    Controller
+       ↓
+      Model
+       ↓
+      Data
+       ↓
+    Controller
+       ↓
+    Response
+```
+
+For an error:
+
+```text
+Request
+   ↓
+Controller
+   ↓
+throw AppError
+   ↓
+Central Error Handler
+   ↓
+Response
+```
+
+---
+
+# 🧭 54. Current API
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| GET | `/students` | Get all students |
+| GET | `/students/:id` | Get one student |
+| POST | `/students` | Create student |
+| PUT | `/students/:id` | Update student |
+| PATCH | `/students/:id` | Partially update student |
+| DELETE | `/students/:id` | Delete student |
+
+---
+
+# 🗺️ 55. Learning Roadmap
+
+### ✅ Completed
+
+```text
+Express Basics
+    ↓
 Routes
-  ↓
+    ↓
+Request / Response
+    ↓
+Params
+    ↓
+Query
+    ↓
+Body
+    ↓
 Middleware
-  ↓
+    ↓
+CRUD
+    ↓
+Router
+    ↓
 Controllers
-  ↓
+    ↓
 Models
-  ↓
-Database
+    ↓
+Validation
+    ↓
+Error Handling
+    ↓
+CORS
+    ↓
+Environment Variables
+    ↓
+Static Files
+    ↓
+Logging
+    ↓
+Async Controllers
+    ↓
+PATCH
+    ↓
+MVC-style structure
 ```
 
-Eventually the temporary JavaScript array will be replaced with a real database.
-
----
-
-# 📚 Learning Philosophy
-
-This project is being developed incrementally.
-
-Each feature is introduced only after understanding the concept behind it.
-
-The current focus is:
+### 🔜 Next
 
 ```text
-Understand
-   ↓
-Build
-   ↓
-Test
-   ↓
-Fix errors
-   ↓
-Refactor
+Database Integration
+      ↓
+MySQL / MongoDB
+      ↓
+Authentication
+      ↓
+JWT
+      ↓
+CORS Improvements
+      ↓
+File Uploads
+      ↓
+Production Structure
+      ↓
+Deployment
 ```
-
-The API is intentionally being improved step-by-step rather than being built all at once.
 
 ---
 
-# 🔧 Useful Development Commands
+# 💾 56. Current Data Storage
 
-Start the server:
+At the moment, student data is stored in a JavaScript array:
+
+```js
+const students = [];
+```
+
+This is temporary **in-memory storage**.
+
+That means restarting the server resets the data.
+
+Example:
+
+```text
+Start server
+   ↓
+students = []
+   ↓
+Create students
+   ↓
+Data exists
+   ↓
+Restart server
+   ↓
+students = []
+```
+
+A database will solve this later.
+
+---
+
+# 📜 57. Useful Commands
+
+## Install Express
 
 ```powershell
-node src/server.js
+npm install express
 ```
 
-Start with Nodemon:
+## Install Nodemon
+
+```powershell
+npm install --save-dev nodemon
+```
+
+## Start normally
+
+```powershell
+npm start
+```
+
+## Start development server
 
 ```powershell
 npm run dev
 ```
 
-Check the current directory:
+## Check current folder
 
 ```powershell
 Get-Location
 ```
 
-Check files:
+## List files
 
 ```powershell
 Get-ChildItem
 ```
 
-Check Git status:
-
-```powershell
-git status
-```
-
-Add changes:
-
-```powershell
-git add .
-```
-
-Commit:
-
-```powershell
-git commit -m "Your message"
-```
-
-Push:
-
-```powershell
-git push origin main
-```
-
 ---
 
-# 🌱 Project Evolution
+# 🌱 58. Project Evolution
 
-The project has evolved through these stages:
+This project has evolved like this:
 
 ```text
-Basic Node.js Server
+Simple Node.js Server
         ↓
 Express Application
         ↓
@@ -2222,7 +1998,7 @@ Middleware
         ↓
 CRUD
         ↓
-Router
+Express Router
         ↓
 Controllers
         ↓
@@ -2232,76 +2008,104 @@ Validation
         ↓
 Error Handling
         ↓
-MVC Structure
+CORS
+        ↓
+Environment Variables
+        ↓
+Static Files
+        ↓
+Logging
+        ↓
+Async Controllers
+        ↓
+PATCH
+        ↓
+MVC-style Architecture
         ↓
 Database
         ↓
 Authentication
         ↓
-Production API
+Production Backend
+```
+
+---
+
+# 🎯 59. Main Goal
+
+The goal of this project is to turn a simple learning API into a proper backend application.
+
+The planned architecture is:
+
+```text
+                    Client
+                       │
+                       ▼
+                    Routes
+                       │
+                       ▼
+                  Middleware
+                       │
+                       ▼
+                  Controllers
+                       │
+                       ▼
+                     Models
+                       │
+                       ▼
+                    Database
+```
+
+---
+
+# ⭐ 60. Final Learning Notes
+
+The most important Express concepts learned so far:
+
+```text
+app.get()      → GET route
+app.post()     → POST route
+app.put()      → PUT route
+app.patch()    → PATCH route
+app.delete()   → DELETE route
+
+req.params     → route parameters
+req.query      → query parameters
+req.body       → request body
+
+res.send()     → send a response
+res.json()     → send JSON
+res.status()   → set status code
+
+app.use()      → middleware
+next()         → continue to next handler
+next(error)    → send error to error handler
+
+express.json() → read JSON request bodies
+express.Router() → organize routes
+
+Route          → where the request goes
+Middleware     → checks/processes request
+Controller     → handles request logic
+Model          → handles data
 ```
 
 ---
 
 # 👨‍💻 Learning Project
 
-Built as part of my backend development learning journey.
+**Project:** Express Student API
 
-### Current Focus
+**Focus:** Express.js + REST API + Backend Architecture
 
-**Express.js**
+**Current Stage:** 🚧 Under Development
 
-### Project
-
-**Express Student API**
-
-### Goal
-
-Build a clean understanding of backend architecture and REST API development before moving to databases and full-stack development.
+Built while learning backend development step by step.
 
 ---
 
-## ⭐ Current Architecture
+## ⭐ Keep Learning. Keep Building.
 
 ```text
-                    ┌──────────────┐
-                    │    Client    │
-                    │ Thunder      │
-                    │ Client       │
-                    └──────┬───────┘
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │    Routes    │
-                    └──────┬───────┘
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │ Middleware   │
-                    └──────┬───────┘
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │ Controllers  │
-                    └──────┬───────┘
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │    Models    │
-                    └──────┬───────┘
-                           │
-                           ▼
-                    ┌──────────────┐
-                    │    Data      │
-                    └──────────────┘
+Learn → Build → Test → Break → Fix → Refactor → Repeat
 ```
-
----
-
-# 🚧 Status
-
-This project is actively being developed as I continue learning backend development.
-
-**Express.js → In Progress**
-
-**Next major step → Continue improving the backend architecture**
