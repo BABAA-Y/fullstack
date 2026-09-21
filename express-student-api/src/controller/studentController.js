@@ -1,13 +1,25 @@
+const AppError = require("../errors/AppError");
 const {
     getAllStudents,
     createStudent,
     updateStudent,
-    deletedStudent
+    deletedStudent,
+    getStudentById
 } = require("../models/studentModles");
 
 const getStudents = (req, res)=>{
      res.json(getAllStudents());
 };
+
+const getStudent = (req, res) =>{
+    const id = Number(req.params.id)
+    const student = getStudentById(id);
+    
+    if (!student) {
+        throw new AppError("Stundet not found", 404);
+    }
+    res.json(student);
+}
 
 const postStudent = (req, res) => {
     const { name, course } = req.body;
@@ -28,9 +40,7 @@ const putStudent = (req, res) => {
     const student = updateStudent(id, name, course);
 
     if (!student) {
-    return res.status(404).json({
-        message: "Student not found"
-    });
+        throw new AppError("Student not found", 404);
     }
 
      res.json({
@@ -45,9 +55,7 @@ const deletedStudentController = (req, res)=>{
     const student = deletedStudent(id);
     
     if (!student) {
-        return res.status(404).json({
-            message: "student not found"
-        });
+        throw new AppError("Studnet Not Found", 404);
     }
 
     res.json({
@@ -57,5 +65,5 @@ const deletedStudentController = (req, res)=>{
 }
 
 module.exports = {
-    getStudents, postStudent, putStudent, deletedStudentController
+    getStudents, postStudent, putStudent, deletedStudentController, getStudent
 };

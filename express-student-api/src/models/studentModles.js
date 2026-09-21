@@ -4,6 +4,10 @@ const getAllStudents = () => {
     return students;
 }
 
+const getStudentById = (id) => {
+    return students.find(student => student.id === id);
+};
+
 const createStudent = (name, course) => {
     const newStudent = {
         id: students.length + 1,
@@ -44,5 +48,6 @@ module.exports = {
     getAllStudents,
     createStudent,
     updateStudent,
-    deletedStudent
+    deletedStudent,
+    getStudentById
 }

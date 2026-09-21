@@ -1,5 +1,5 @@
 class AppError extends Error { // ! Make a new type of error called AppError. WHICH IS BASED ON JS ERROR
-    constructor(message, statusCode) {
+    constructor(message, statusCode) { 
         super(message); // # super(message) - gives the parent Error the message.
 
         this.statusCode = statusCode; // store error msg
