@@ -1,0 +1,24 @@
+{
+  "name": "sql-crud",
+  "version": "1.0.0",
+  "description": "my sql node.js crud app",
+  "license": "ISC",
+  "author": "BABA",
+  "type": "commonjs",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server",
+    "dev": "nodemon server.js"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^18.0.4",
+    "express": "^5.2.1",
+    "morgan": "^1.12.1",
+    "mysql2": "^3.24.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
